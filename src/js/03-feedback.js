@@ -17,12 +17,16 @@ function handleFormInput(e) {
 }
 
 function initForm() {
-    let savedInput = localStorage.getItem(STORAGE_KEY);
-    if(savedInput) {
-        savedInput = JSON.parse(savedInput);
-        Object.entries(savedInput).forEach(([name, value]) => {
-            form.elements[name].value = value;
-        });
+    try {
+        let savedInput = localStorage.getItem(STORAGE_KEY);
+        if(savedInput) {
+            savedInput = JSON.parse(savedInput);
+            Object.entries(savedInput).forEach(([name, value]) => {
+                form.elements[name].value = value;
+            });
+        } 
+    } catch (error) {
+        console.log(error);
     }
 }
 function handleFormSubmit(e) {
